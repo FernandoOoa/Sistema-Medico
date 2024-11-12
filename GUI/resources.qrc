@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="icons">
+    <file>icons/Secretaria.png</file>
     <file>icons/cita.png</file>
     <file>icons/enfermedad.png</file>
     <file>icons/signo-sintoma.png</file>

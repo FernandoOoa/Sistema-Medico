@@ -1,6 +1,7 @@
 from PySide6.QtWidgets import QApplication, QMainWindow, QMessageBox
 from ui_VentanaIniciarSesion import Ui_MainWindow
 from VentanaPanelDeAdministrador import VentanaPanelDeAdministrador
+from VentanaPanelSecretaria import VentanaPanelSecretaria
 from typing import Optional, Tuple
 import sqlite3
 import sys
@@ -15,6 +16,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         # Optional Windows
         self.ventana_panel_de_administrador = VentanaPanelDeAdministrador()
+        self.ventana_panel_de_secretaria = VentanaPanelSecretaria()
 
         # Signal
         self.loginButton.clicked.connect(self.login)
@@ -51,7 +53,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             case "Doctor":
                 pass
             case "Recepcion":
-                pass
+                self.ventana_panel_de_administrador.logged_in_user_information = {
+                    "user_id": authenticated_user[0],
+                    "user_email": authenticated_user[1],
+                    "user_password": authenticated_user[2],
+                    "user_type": authenticated_user[3],
+                }
+                self.ventana_panel_de_secretaria.show()
+                self.close()
             case _:
                 pass
 
