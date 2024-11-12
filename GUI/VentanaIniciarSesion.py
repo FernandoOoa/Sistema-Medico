@@ -2,10 +2,10 @@ from PySide6.QtWidgets import QApplication, QMainWindow, QMessageBox
 from ui_VentanaIniciarSesion import Ui_MainWindow
 from VentanaPanelDeAdministrador import VentanaPanelDeAdministrador
 from VentanaPanelSecretaria import VentanaPanelSecretaria
+from VentanaPanelDoctor import VentanaPanelDoctor
 from typing import Optional, Tuple
 import sqlite3
 import sys
-
 
 
 class MainWindow(QMainWindow, Ui_MainWindow):
@@ -17,6 +17,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # Optional Windows
         self.ventana_panel_de_administrador = VentanaPanelDeAdministrador()
         self.ventana_panel_de_secretaria = VentanaPanelSecretaria()
+        self.ventana_panel_de_doctor = VentanaPanelDoctor()
 
         # Signal
         self.loginButton.clicked.connect(self.login)
@@ -32,25 +33,33 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         if len(email) == 0 or len(password) == 0:
             QMessageBox.critical(self, "ERROR", "Completa todos los campos")
             return
-        
+
         statement = f"SELECT * FROM user_auth WHERE correo = '{email}' AND password = '{password}';"
         authenticated_user = self.query(statement)
 
         if authenticated_user is None:
             QMessageBox.critical(self, "ERROR", "Usuario no registrado")
             return
-        
+
         match authenticated_user[3]:
             case "Administrador":
                 self.ventana_panel_de_administrador.logged_in_user_information = {
                     "user_id": authenticated_user[0],
                     "user_email": authenticated_user[1],
                     "user_password": authenticated_user[2],
-                    "user_type": authenticated_user[3]
+                    "user_type": authenticated_user[3],
                 }
                 self.ventana_panel_de_administrador.show()
                 self.close()
             case "Doctor":
+                self.ventana_panel_de_administrador.logged_in_user_information = {
+                    "user_id": authenticated_user[0],
+                    "user_email": authenticated_user[1],
+                    "user_password": authenticated_user[2],
+                    "user_type": authenticated_user[3],
+                }
+                self.ventana_panel_de_doctor.show()
+                self.close()
                 pass
             case "Recepcion":
                 self.ventana_panel_de_administrador.logged_in_user_information = {
@@ -61,18 +70,20 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 }
                 self.ventana_panel_de_secretaria.show()
                 self.close()
+                pass
             case _:
                 pass
 
     def query(self, statement: str) -> Optional[Tuple[str, int]]:
-        connection = sqlite3.connect('databases/sistemamedico.db')
+        connection = sqlite3.connect("databases/sistemamedico.db")
         cursor = connection.cursor()
         response = cursor.execute(statement)
-        
+
         authenticated_user = response.fetchone()
         connection.close()
-        
+
         return authenticated_user
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
