@@ -1,0 +1,12 @@
+<RCC>
+  <qresource prefix="icons">
+    <file>icons/cita.png</file>
+    <file>icons/enfermedad.png</file>
+    <file>icons/signo-sintoma.png</file>
+    <file>icons/paciente.png</file>
+    <file>icons/equipo-medico.png</file>
+    <file>icons/admin.png</file>
+    <file>icons/cerrar-sesion.png</file>
+    <file>icons/usuario.png</file>
+  </qresource>
+</RCC>

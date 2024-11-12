@@ -1,0 +1,89 @@
+CREATE TABLE "doctor" (
+	"doctor_id"	INTEGER NOT NULL,
+	"nombre_completo"	TEXT NOT NULL,
+	"correo"	TEXT NOT NULL,
+	"telefono"	TEXT NOT NULL,
+	"consultorio"	INTEGER NOT NULL,
+	"especialidad"	TEXT NOT NULL,
+	"cedula_profesional"	TEXT NOT NULL,
+	"estado"	TEXT NOT NULL DEFAULT 'Activo',
+	PRIMARY KEY("doctor_id" AUTOINCREMENT)
+);
+
+
+CREATE TABLE "paciente" (
+	"paciente_id"	INTEGER NOT NULL,
+	"nombre_completo"	TEXT NOT NULL,
+	"correo"	TEXT NOT NULL,
+	"telefono"	TEXT NOT NULL,
+	"direccion"	TEXT NOT NULL,
+	"tipo_de_sangre"	TEXT NOT NULL,
+	"consultorio"	INTEGER NOT NULL,
+	"estado"	TEXT NOT NULL DEFAULT 'Activo',
+	PRIMARY KEY("paciente_id" AUTOINCREMENT)
+);
+
+CREATE TABLE "cita" (
+	"cita_id"	INTEGER NOT NULL,
+	"consultorio"	INTEGER NOT NULL,
+	"fecha_hora"	TEXT NOT NULL,
+	"estado"	TEXT NOT NULL DEFAULT 'Disponible',
+	PRIMARY KEY("cita_id" AUTOINCREMENT)
+);
+
+CREATE TABLE "consulta" (
+	"consulta_id"	INTEGER NOT NULL,
+	"cita_id"	INTEGER NOT NULL,
+	"doctor_id"	INTEGER NOT NULL,
+	"paciente_id"	INTEGER NOT NULL,
+	"estado"	TEXT NOT NULL DEFAULT 'Pendiente',
+	PRIMARY KEY("consulta_id" AUTOINCREMENT),
+	FOREIGN KEY("cita_id") REFERENCES "cita"("cita_id"),
+	FOREIGN KEY("doctor_id") REFERENCES "doctor"("doctor_id"),
+	FOREIGN KEY("paciente_id") REFERENCES "paciente"("paciente_id")
+);
+
+CREATE TABLE "signo" (
+	"signo_id"	INTEGER NOT NULL,
+	"nombre"	TEXT NOT NULL,
+	PRIMARY KEY("signo_id" AUTOINCREMENT)
+);
+
+CREATE TABLE "sintoma" (
+	"sintoma_id"	INTEGER NOT NULL,
+	"nombre"	TEXT NOT NULL,
+	PRIMARY KEY("sintoma_id" AUTOINCREMENT)
+);
+
+CREATE TABLE "enfermedad" (
+	"enfermedad_id"	INTEGER NOT NULL,
+	"nombre"	TEXT NOT NULL,
+	"tratamiento"	TEXT NOT NULL,
+	"signo_id"	INTEGER NOT NULL,
+	"sintoma_id"	INTEGER NOT NULL,
+	PRIMARY KEY("enfermedad_id" AUTOINCREMENT),
+	FOREIGN KEY("signo_id") REFERENCES "signo"("signo_id"),
+	FOREIGN KEY("sintoma_id") REFERENCES "sintoma"("sintoma_id")
+);
+
+CREATE TABLE "historial" (
+	"historial_id"	INTEGER NOT NULL,
+	"consulta_id"	INTEGER NOT NULL,
+	"enfermedad_id"	INTEGER NOT NULL,
+	"estado_paciente"	TEXT NOT NULL DEFAULT 'Regular',
+	"observacion"	TEXT NOT NULL,
+	PRIMARY KEY("historial_id" AUTOINCREMENT),
+	FOREIGN KEY("consulta_id") REFERENCES "consulta"("consulta_id"),
+	FOREIGN KEY("enfermedad_id") REFERENCES "enfermedad"("enfermedad_id")
+);
+
+CREATE TABLE "historial" (
+	"historial_id"	INTEGER NOT NULL,
+	"consulta_id"	INTEGER NOT NULL,
+	"enfermedad_id"	INTEGER NOT NULL,
+	"estado_paciente"	TEXT NOT NULL DEFAULT 'Regular',
+	"observacion"	TEXT NOT NULL,
+	PRIMARY KEY("historial_id" AUTOINCREMENT),
+	FOREIGN KEY("consulta_id") REFERENCES "consulta"("consulta_id"),
+	FOREIGN KEY("enfermedad_id") REFERENCES "enfermedad"("enfermedad_id")
+);
