@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'VentanaPanelDoctoryWvcBg.ui'
+## Form generated from reading UI file 'VentanaPanelDoctorSZmrgb.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.8.0
 ##
@@ -25,10 +25,15 @@ class Ui_Consultas(object):
         Consultas.resize(609, 425)
         self.gridLayout = QGridLayout(Consultas)
         self.gridLayout.setObjectName(u"gridLayout")
-        self.consultaTabla = QTableView(Consultas)
-        self.consultaTabla.setObjectName(u"consultaTabla")
+        self.atenderBoton = QPushButton(Consultas)
+        self.atenderBoton.setObjectName(u"atenderBoton")
 
-        self.gridLayout.addWidget(self.consultaTabla, 1, 0, 1, 1)
+        self.gridLayout.addWidget(self.atenderBoton, 7, 0, 1, 1)
+
+        self.consultaAtendidaTabla = QTableView(Consultas)
+        self.consultaAtendidaTabla.setObjectName(u"consultaAtendidaTabla")
+
+        self.gridLayout.addWidget(self.consultaAtendidaTabla, 4, 0, 1, 1)
 
         self.label = QLabel(Consultas)
         self.label.setObjectName(u"label")
@@ -37,15 +42,20 @@ class Ui_Consultas(object):
 
         self.gridLayout.addWidget(self.label, 0, 0, 1, 1)
 
-        self.atenderBoton = QPushButton(Consultas)
-        self.atenderBoton.setObjectName(u"atenderBoton")
+        self.label_2 = QLabel(Consultas)
+        self.label_2.setObjectName(u"label_2")
 
-        self.gridLayout.addWidget(self.atenderBoton, 5, 0, 1, 1)
+        self.gridLayout.addWidget(self.label_2, 1, 0, 1, 1)
 
-        self.consultaAtendidaTabla = QTableView(Consultas)
-        self.consultaAtendidaTabla.setObjectName(u"consultaAtendidaTabla")
+        self.consultaTabla = QTableView(Consultas)
+        self.consultaTabla.setObjectName(u"consultaTabla")
 
-        self.gridLayout.addWidget(self.consultaAtendidaTabla, 2, 0, 1, 1)
+        self.gridLayout.addWidget(self.consultaTabla, 2, 0, 1, 1)
+
+        self.label_3 = QLabel(Consultas)
+        self.label_3.setObjectName(u"label_3")
+
+        self.gridLayout.addWidget(self.label_3, 3, 0, 1, 1)
 
 
         self.retranslateUi(Consultas)
@@ -55,7 +65,9 @@ class Ui_Consultas(object):
 
     def retranslateUi(self, Consultas):
         Consultas.setWindowTitle(QCoreApplication.translate("Consultas", u"Consultas", None))
-        self.label.setText(QCoreApplication.translate("Consultas", u"Bienvenido Doctor", None))
         self.atenderBoton.setText(QCoreApplication.translate("Consultas", u"Atender", None))
+        self.label.setText(QCoreApplication.translate("Consultas", u"Bienvenido Doctor", None))
+        self.label_2.setText(QCoreApplication.translate("Consultas", u"Consultas por atender", None))
+        self.label_3.setText(QCoreApplication.translate("Consultas", u"Consultas atendidas", None))
     # retranslateUi
 

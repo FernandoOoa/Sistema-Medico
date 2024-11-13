@@ -14,8 +14,15 @@
    <string>Consultas</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="1" column="0">
-    <widget class="QTableView" name="consultaTabla"/>
+   <item row="7" column="0">
+    <widget class="QPushButton" name="atenderBoton">
+     <property name="text">
+      <string>Atender</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0">
+    <widget class="QTableView" name="consultaAtendidaTabla"/>
    </item>
    <item row="0" column="0">
     <widget class="QLabel" name="label">
@@ -30,15 +37,22 @@
      </property>
     </widget>
    </item>
-   <item row="5" column="0">
-    <widget class="QPushButton" name="atenderBoton">
+   <item row="1" column="0">
+    <widget class="QLabel" name="label_2">
      <property name="text">
-      <string>Atender</string>
+      <string>Consultas por atender</string>
      </property>
     </widget>
    </item>
    <item row="2" column="0">
-    <widget class="QTableView" name="consultaAtendidaTabla"/>
+    <widget class="QTableView" name="consultaTabla"/>
+   </item>
+   <item row="3" column="0">
+    <widget class="QLabel" name="label_3">
+     <property name="text">
+      <string>Consultas atendidas</string>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>
